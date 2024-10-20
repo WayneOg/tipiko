@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIPIKO - Exquisite Filipino Delicacies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .logo {
+            max-height: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .welcome img {
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-info {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-image {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .carousel-item {
+            padding: 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-custom {
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #FF8E8E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background-color: #FF6B6B;
+        }
+
+        /* Additional styles for new features */
+.featured-post {
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    color: #fff;
+}
+
+.featured-post .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.hotspot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FF6B6B;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hotspot:hover {
+    transform: scale(1.2);
+}
+
+#product-viewer {
+    cursor: pointer;
+}
+
+#virtual-taste-test {
+    background: linear-gradient(45deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+
+.flavor-wheel {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+     .contact-form {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 3rem 0;
+            font-family: Arial, sans-serif;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1;
+            margin: 0 1rem;
+            min-width: 200px;
+        }
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .footer-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .social-icons {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: #333;
+            margin-right: 1rem;
+        }
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="py-3 bg-light">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="tipiko/img (1).png" alt="TIPIKO Logo" class="logo">
+            <button class="btn btn-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                Menu
+            </button>
+        </div>
+    </header>
+
+    <!-- Offcanvas Navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Explore TIPIKO</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#products">Our Delicacies</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#flavors">Flavors</a></li>
+                <li class="nav-item"><a class="nav-link" href="#green">Green Initiative</a></li>
+                <li class="nav-item"><a class="nav-link" href="#mission">Our Mission</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Get in Touch</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="welcome" data-aos="fade-up">
+        <img src="tipiko/TIPIKO.png" alt="Welcome to TIPIKO" class="img-fluid">
+    </div>
+
+    <!-- Interactive Product Showcase -->
+<section id="interactive-showcase" class="py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up">Experience TIPIKO</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div id="product-viewer" class="position-relative" data-aos="zoom-in">
+                    <img src="tipiko/img88.png" alt="TIPIKO Product" class="img-fluid" id="product-image">
+                    <div id="hotspots">
+                        <span class="hotspot" style="top: 20%; left: 20%;" data-info="Premium Mangoes"></span>
+                        <span class="hotspot" style="top: 50%; left: 80%;" data-info="Eco-Friendly Packaging"></span>
+                        <span class="hotspot" style="top: 80%; left: 50%;" data-info="All-Natural Ingredients"></span>
+                    </div>
+                </div>
+                <div id="product-info" class="text-center mt-3">
+                    <h4>Discover the TIPIKO Difference</h4>
+                    <p>Click on the hotspots to learn more about our products</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    <!-- About Section -->
+    <section id="about" class="py-5" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/about.png" alt="About TIPIKO" class="img-fluid">
+        </div>
+    </section>
+
+    <section id="souvenirs" class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/souveneirs.png" alt="TIPIKO Souvenirs" class="img-fluid">
+        </div>
+    </section>
+
+    <!-- Product Showcase Carousel -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Our Exquisite Delicacies</h2>
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-aos="fade-left">
+                        <div class="product-card" style="background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);">
+                            <div class="product-info">
+                                <h2 style="font-size: 3rem; font-weight: 700; color: #fff;">Mango Jam</h2>
+                                <p class="mt-3" style="color: #fff;">Experience the sweet tropical bliss in every spoonful of our premium Mango Jam.</p>
+                                <button class="btn btn-custom mt-3">Learn More</button>
+                            </div>
+                            <div class="product-image">
+                                <img src="tipiko/img88.png" alt="Mango Jam">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-aos="fade-left">
+                        <div class="product-card" style="background: linear-gradient(45deg, #a1c4fd 0%, #c2e9fb 100%);">
+                            <div class="product-info">
+                                <h2 style="font-size: 3rem; font-weight: 700; color: #fff;">Coconut Jam</h2>
+                                <p class="mt-3" style="color: #fff;">Indulge in the creamy goodness of our Coconut Jam, a true taste of paradise.</p>
+                                <button class="btn btn-custom mt-3">Discover Now</button>
+                            </div>
+                            <div class="product-image">
+                                <img src="tipiko/img93.png" alt="Coconut Jam">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-aos="fade-left">
+                        <div class="product-card" style="background: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);">
+                            <div class="product-info">
+                                <h2 style="font-size: 3rem; font-weight: 700; color: #fff;">Pineapple Jam</h2>
+                                <p class="mt-3" style="color: #fff;">Savor the tangy sweetness of our Pineapple Jam, a perfect tropical treat.</p>
+                                <button class="btn btn-custom mt-3">Explore Flavors</button>
+                            </div>
+                            <div class="product-image">
+                                <img src="tipiko/img97.png" alt="Pineapple Jam">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="flavors" class="py-5" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/flavors.png" alt="TIPIKO Flavors" class="img-fluid">
+        </div>
+    </section>
+
+        <!-- Virtual Taste Test -->
+        <section id="virtual-taste-test" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title text-center mb-5" data-aos="fade-up">Virtual Taste Test</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center">
+                        <p>Experience the flavors of TIPIKO from home!</p>
+                        <button class="btn btn-custom btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#tasteTestModal">Start Virtual Tasting</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+         <!-- Virtual Taste Test Modal -->
+    <div class="modal fade" id="tasteTestModal" tabindex="-1" aria-labelledby="tasteTestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tasteTestModalLabel">TIPIKO Virtual Taste Test</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="taste-test-carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Mango Jam -->
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="tipiko/img88.png" class="d-block w-100" alt="Mango Jam">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>Mango Jam</h3>
+                                        <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
+                                        <div class="flavor-profile mb-3">
+                                            <h4>Flavor Profile</h4>
+                                            <div id="flavor-wheel-mango" class="flavor-wheel"></div>
+                                        </div>
+                                        <div class="pairing-suggestions mb-3">
+                                            <h4>Pairing Suggestions</h4>
+                                            <ul>
+                                                <li>Spread on warm toast</li>
+                                                <li>Mix with yogurt</li>
+                                                <li>Use as a glaze for grilled chicken</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tasting-notes mb-3">
+                                            <h4>Your Tasting Notes</h4>
+                                            <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Coconut Jam -->
+                            <div class="carousel-item">
+                                <!-- ... (similar structure as Mango Jam) ... -->
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img src="tipiko/img97.png" class="d-block w-100" alt="Mango Jam">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3>Mango Jam</h3>
+                                            <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
+                                            <div class="flavor-profile mb-3">
+                                                <h4>Flavor Profile</h4>
+                                                <div id="flavor-wheel-mango" class="flavor-wheel"></div>
+                                            </div>
+                                            <div class="pairing-suggestions mb-3">
+                                                <h4>Pairing Suggestions</h4>
+                                                <ul>
+                                                    <li>Spread on warm toast</li>
+                                                    <li>Mix with yogurt</li>
+                                                    <li>Use as a glaze for grilled chicken</li>
+                                                </ul>
+                                            </div>
+                                            <div class="tasting-notes mb-3">
+                                                <h4>Your Tasting Notes</h4>
+                                                <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pineapple Jam -->
+                            <div class="carousel-item">
+                                <!-- ... (similar structure as Mango Jam) ... -->
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img src="tipiko/img93.png" class="d-block w-100" alt="Mango Jam">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3>Mango Jam</h3>
+                                            <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
+                                            <div class="flavor-profile mb-3">
+                                                <h4>Flavor Profile</h4>
+                                                <div id="flavor-wheel-mango" class="flavor-wheel"></div>
+                                            </div>
+                                            <div class="pairing-suggestions mb-3">
+                                                <h4>Pairing Suggestions</h4>
+                                                <ul>
+                                                    <li>Spread on warm toast</li>
+                                                    <li>Mix with yogurt</li>
+                                                    <li>Use as a glaze for grilled chicken</li>
+                                                </ul>
+                                            </div>
+                                            <div class="tasting-notes mb-3">
+                                                <h4>Your Tasting Notes</h4>
+                                                <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Custom Navigation Buttons -->
+                        <button class="custom-carousel-control custom-carousel-control-prev" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="prev">
+                            &#10094; <!-- Left arrow -->
+                        </button>
+                        <button class="custom-carousel-control custom-carousel-control-next" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="next">
+                            &#10095; <!-- Right arrow -->
+                        </button>
+                        <!-- Carousel Indicators -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Mango Jam"></button>
+                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="1" aria-label="Coconut Jam"></button>
+                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="2" aria-label="Pineapple Jam"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-custom" id="save-tasting-notes">Save Tasting Notes</button>
+                    <button type="button" class="btn btn-custom">Order Sample Pack</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flavorProfiles = {
+                'Mango Jam': { sweetness: 8, tanginess: 6, fruitiness: 9 },
+                'Coconut Jam': { sweetness: 7, creaminess: 9, richness: 8 },
+                'Pineapple Jam': { sweetness: 7, tanginess: 8, fruitiness: 9 }
+            };
+    
+            const tasteTestModal = document.getElementById('tasteTestModal');
+            tasteTestModal.addEventListener('show.bs.modal', function(event) {
+                updateFlavorProfile('Mango Jam');
+            });
+    
+            const carousel = document.getElementById('taste-test-carousel');
+            carousel.addEventListener('slid.bs.carousel', function(event) {
+                const activeItem = event.relatedTarget;
+                const productName = activeItem.querySelector('h3').textContent;
+                updateFlavorProfile(productName);
+            });
+    
+            function updateFlavorProfile(productName) {
+                const profile = flavorProfiles[productName];
+                createFlavorWheel(profile);
+            }
+    
+            function createFlavorWheel(profile) {
+                const width = 300;
+                const height = 300;
+                const radius = Math.min(width, height) / 2;
+    
+                d3.select("#flavor-wheel").selectAll("*").remove();
+    
+                const svg = d3.select("#flavor-wheel")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", `translate(${width / 2},${height / 2})`);
+    
+                const color = d3.scaleOrdinal(d3.schemeCategory10);
+    
+                const pie = d3.pie()
+                    .value(d => d[1])
+                    .sort(null);
+    
+                const data = Object.entries(profile);
+    
+                const arc = d3.arc()
+                    .innerRadius(0)
+                    .outerRadius(radius);
+    
+                const arcs = svg.selectAll("arc")
+                    .data(pie(data))
+                    .enter()
+                    .append("g");
+    
+                arcs.append("path")
+                    .attr("d", arc)
+                    .attr("fill", (d, i) => color(i));
+    
+                arcs.append("text")
+                    .attr("transform", d => `translate(${arc.centroid(d)})`)
+                    .attr("text-anchor", "middle")
+                    .text(d => `${d.data[0]}: ${d.data[1]}`);
+            }
+    
+            const saveButton = document.getElementById('save-tasting-notes');
+            saveButton.addEventListener('click', function() {
+                const activeItem = document.querySelector('.carousel-item.active');
+                const productName = activeItem.querySelector('h3').textContent;
+                const tastingNotes = activeItem.querySelector('#tasting-notes').value;
+                
+                // Here you would typically send this data to a server
+                console.log(`Saved tasting notes for ${productName}: ${tastingNotes}`);
+                
+                // For demonstration, we'll just show an alert
+                alert('Tasting notes saved!');
+            });
+        });
+        </script>
+
+    <section id="green" class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/green.png" alt="TIPIKO Green Initiative" class="img-fluid">
+        </div>
+    </section>
+
+    <section id="goals" class="py-5" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/goals.png" alt="TIPIKO Goals" class="img-fluid">
+        </div>
+    </section>
+
+    <section id="mission" class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+            <img src="tipiko/mission.png" alt="TIPIKO Mission" class="img-fluid">
+        </div>
+    </section>
+
+
+<!-- Enhanced Blog Section -->
+<section id="blog" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up">TIPIKO Culinary Chronicles</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="featured-post card mb-4" data-aos="fade-up">
+                    <div class="card-body">
+                        <h3 class="card-title">The Art of Fruit Preservation: TIPIKO's Signature Techniques</h3>
+                        <p class="card-text">Dive deep into the traditional and innovative methods that make TIPIKO's preserves stand out in flavor and quality.</p>
+                        <a href="#" class="btn btn-custom">Read Full Article</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card h-100">
+                            <img src="/api/placeholder/800/600" class="card-img-top" alt="Mango Jam Recipe">
+                            <div class="card-body">
+                                <h5 class="card-title">5 Gourmet Recipes Featuring TIPIKO Mango Jam</h5>
+                                <p class="card-text">Elevate your culinary creations with these exclusive recipes from top Filipino chefs.</p>
+                                <a href="#" class="btn btn-custom">Explore Recipes</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card h-100">
+                            <img src="/api/placeholder/800/600" class="card-img-top" alt="Sustainable Farming">
+                            <div class="card-body">
+                                <h5 class="card-title">From Farm to Jar: TIPIKO's Eco-Friendly Journey</h5>
+                                <p class="card-text">Discover how our commitment to sustainability shapes every step of our production process.</p>
+                                <a href="#" class="btn btn-custom">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-left">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Popular Topics</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#">Filipino Cuisine</a></li>
+                            <li class="list-group-item"><a href="#">Sustainable Practices</a></li>
+                            <li class="list-group-item"><a href="#">Recipe Ideas</a></li>
+                            <li class="list-group-item"><a href="#">Health Benefits</a></li>
+                            <li class="list-group-item"><a href="#">Behind the Scenes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-custom btn-lg">Explore All Articles</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="contact-form" data-aos="fade-up">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-logo">
+                    <img src="tipiko/img (1).png" alt="TIPIKO Logo">
+                    <p>Savor the taste of Filipino excellence.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for recipes, promotions, and more!</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email" style="padding: 5px; width: 200px;">
+                        <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TIPIKO. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Interactive Product Showcase
+document.querySelectorAll('.hotspot').forEach(hotspot => {
+    hotspot.addEventListener('click', function() {
+        document.getElementById('product-info').innerHTML = `
+            <h4>${this.getAttribute('data-info')}</h4>
+            <p>Learn more about how this feature makes TIPIKO products unique.</p>
+        `;
+    });
+});
+
+// Virtual Taste Test
+document.getElementById('taste-test-carousel').addEventListener('slid.bs.carousel', function (event) {
+    const flavor = event.relatedTarget.querySelector('h5').textContent;
+    // You could add more interactivity here, such as updating a flavor profile description
+    console.log(`Now tasting: ${flavor}`);
+});
+    </script>
+</body>
+</html>
