@@ -1,22 +1,19 @@
 #!/bin/bash
 
-# Exit the script if any command fails
-set -e
+# Build the project
+echo "Building the project..."
+python3.9 -m pip install -r requirements.txt
 
-# Install dependencies from requirements.txt
-echo "Installing dependencies..."
-pip install -r requirements.txt
+# Make migrations
+echo "Making migrations..."
+python3.9 manage.py makemigrations
+
+# Migrate
+echo "Applying migrations..."
+python3.9 manage.py migrate
 
 # Collect static files
 echo "Collecting static files..."
-python manage.py collectstatic --noinput
+python3.9 manage.py collectstatic --noinput --clear
 
-# Apply database migrations
-echo "Applying database migrations..."
-python manage.py migrate
-
-# Run any custom build steps if needed
-echo "Custom build steps (if any)..."
-# Add any other necessary build commands here
-
-echo "Build complete."
+# Additional commands can be added here if needed
