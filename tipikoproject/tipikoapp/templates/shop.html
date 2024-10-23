@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipiko Online Shop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;  /* Olive green */
+            --secondary-color: #FF6B6B;  /* Darker olive green */
+            --accent-color: #FFA500;  /* Orange */
+            --background-color: #F5F5DC;  /* Beige */
+            --text-color: #333;
+            --light-text-color: #F5F5DC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Brush Script MT', cursive;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 20px;
+        }
+        
+        h2 {
+            font-family: 'Georgia', serif;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--light-text-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav ul {
+                margin-top: 10px;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 3rem 0;
+            font-family: Arial, sans-serif;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1;
+            margin: 0 1rem;
+            min-width: 200px;
+        }
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .footer-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .social-icons {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: #333;
+            margin-right: 1rem;
+        }
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Tipiko</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h2>Our Organic Selection</h2>
+        <div class="products">
+            <div class="product">
+                <img src="tipiko/img88.png" alt="Mango Jam">
+                <div class="product-info">
+                    <h3 class="product-title">Mango Jam</h3>
+                    <p class="product-description">Juicy, sun-ripened tomatoes grown with love.</p>
+                    <p class="product-price">$4.99 / lb</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img93.png" alt="Tuna Steak">
+                <div class="product-info">
+                    <h3 class="product-title">Tuna Steak</h3>
+                    <p class="product-description">Farm-fresh eggs from happy hens.</p>
+                    <p class="product-price">$5.99 / dozen</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img88.png" alt="Artisanal Bread">
+                <div class="product-info">
+                    <h3 class="product-title">Mango Jam</h3>
+                    <p class="product-description">Crusty, tangy bread baked with tradition.</p>
+                    <p class="product-price">$6.99 / loaf</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img97.png" alt="Organic Honey">
+                <div class="product-info">
+                    <h3 class="product-title">Tamarind Chutney</h3>
+                    <p class="product-description">Pure, unfiltered honey from our local forests.</p>
+                    <p class="product-price">$8.99 / jar</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Our Organic Selection</h2>
+        <div class="products">
+            <div class="product">
+                <img src="tipiko/img88.png" alt="Mango Jam">
+                <div class="product-info">
+                    <h3 class="product-title">Mango Jam</h3>
+                    <p class="product-description">Juicy, sun-ripened tomatoes grown with love.</p>
+                    <p class="product-price">$4.99 / lb</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img93.png" alt="Tuna Steak">
+                <div class="product-info">
+                    <h3 class="product-title">Tuna Steak</h3>
+                    <p class="product-description">Farm-fresh eggs from happy hens.</p>
+                    <p class="product-price">$5.99 / dozen</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img88.png" alt="Artisanal Bread">
+                <div class="product-info">
+                    <h3 class="product-title">Mango Jam</h3>
+                    <p class="product-description">Crusty, tangy bread baked with tradition.</p>
+                    <p class="product-price">$6.99 / loaf</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="tipiko/img97.png" alt="Organic Honey">
+                <div class="product-info">
+                    <h3 class="product-title">Tamarind Chutney</h3>
+                    <p class="product-description">Pure, unfiltered honey from our local forests.</p>
+                    <p class="product-price">$8.99 / jar</p>
+                    <button class="btn add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Footer -->
+     <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-logo">
+                    <img src="tipiko/img (1).png" alt="TIPIKO Logo">
+                    <p>Savor the taste of Filipino excellence.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-links">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for recipes, promotions, and more!</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email" style="padding: 5px; width: 200px;">
+                        <button type="submit" style="padding: 5px 10px; background-color: #007bff; color: white; border: none;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TIPIKO. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let cartCount = 0;
+            const cartCountElement = document.querySelector('.cart-count');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    cartCount++;
+                    cartCountElement.textContent = cartCount;
+                    button.textContent = 'Added to Cart';
+                    button.disabled = true;
+                    setTimeout(() => {
+                        button.textContent = 'Add to Cart';
+                        button.disabled = false;
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
