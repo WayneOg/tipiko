@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TIPIKO - Exquisite Filipino Delicacies</title>
@@ -218,7 +219,7 @@
     <!-- Header Section -->
     <header class="py-3 bg-light">
         <div class="container d-flex justify-content-between align-items-center">
-            <img src="tipiko/img (1).png" alt="TIPIKO Logo" class="logo">
+            <img src="{% static 'tipiko/img (1).png' %}" alt="TIPIKO Logo" class="logo">
             <button class="btn btn-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 Menu
             </button>
@@ -244,7 +245,7 @@
     </div>
 
     <div class="welcome" data-aos="fade-up">
-        <img src="tipiko/TIPIKO.png" alt="Welcome to TIPIKO" class="img-fluid">
+        <img src="{% static 'tipiko/TIPIKO.png' %}" alt="Welcome to TIPIKO" class="img-fluid">
     </div>
 
     <!-- Interactive Product Showcase -->
@@ -254,7 +255,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div id="product-viewer" class="position-relative" data-aos="zoom-in">
-                    <img src="tipiko/img88.png" alt="TIPIKO Product" class="img-fluid" id="product-image">
+                    <img src="{% static 'tipiko/img88.png' %}" alt="TIPIKO Product" class="img-fluid" id="product-image">
                     <div id="hotspots">
                         <span class="hotspot" style="top: 20%; left: 20%;" data-info="Premium Mangoes"></span>
                         <span class="hotspot" style="top: 50%; left: 80%;" data-info="Eco-Friendly Packaging"></span>
@@ -274,13 +275,13 @@
     <!-- About Section -->
     <section id="about" class="py-5" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/about.png" alt="About TIPIKO" class="img-fluid">
+            <img src="{% static 'tipiko/about.png' %}" alt="About TIPIKO" class="img-fluid">
         </div>
     </section>
 
     <section id="souvenirs" class="py-5 bg-light" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/souveneirs.png" alt="TIPIKO Souvenirs" class="img-fluid">
+            <img src="{% static 'tipiko/souveneirs.png' %}" alt="TIPIKO Souvenirs" class="img-fluid">
         </div>
     </section>
 
@@ -298,7 +299,7 @@
                                 <button class="btn btn-custom mt-3">Learn More</button>
                             </div>
                             <div class="product-image">
-                                <img src="tipiko/img88.png" alt="Mango Jam">
+                                <img src="{% static 'tipiko/img88.png' %}" alt="Mango Jam">
                             </div>
                         </div>
                     </div>
@@ -310,7 +311,7 @@
                                 <button class="btn btn-custom mt-3">Discover Now</button>
                             </div>
                             <div class="product-image">
-                                <img src="tipiko/img93.png" alt="Coconut Jam">
+                                <img src="{% static 'tipiko/img93.png' %}" alt="Coconut Jam">
                             </div>
                         </div>
                     </div>
@@ -322,7 +323,7 @@
                                 <button class="btn btn-custom mt-3">Explore Flavors</button>
                             </div>
                             <div class="product-image">
-                                <img src="tipiko/img97.png" alt="Pineapple Jam">
+                                <img src="{% static 'tipiko/img97.png' %}" alt="Pineapple Jam">
                             </div>
                         </div>
                     </div>
@@ -334,7 +335,7 @@
 
     <section id="flavors" class="py-5" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/flavors.png" alt="TIPIKO Flavors" class="img-fluid">
+            <img src="{% static 'tipiko/flavors.png' %}" alt="TIPIKO Flavors" class="img-fluid">
         </div>
     </section>
 
@@ -366,7 +367,7 @@
                             <div class="carousel-item active">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <img src="tipiko/img88.png" class="d-block w-100" alt="Mango Jam">
+                                        <img src="{% static 'tipiko/img88.png' %}" class="d-block w-100" alt="Mango Jam">
                                     </div>
                                     <div class="col-md-6">
                                         <h3>Mango Jam</h3>
@@ -396,7 +397,7 @@
                                 <div class="carousel-item active">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img src="tipiko/img97.png" class="d-block w-100" alt="Mango Jam">
+                                            <img src="{% static 'tipiko/img97.png' %}" class="d-block w-100" alt="Mango Jam">
                                         </div>
                                         <div class="col-md-6">
                                             <h3>Mango Jam</h3>
@@ -427,7 +428,7 @@
                                 <div class="carousel-item active">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img src="tipiko/img93.png" class="d-block w-100" alt="Mango Jam">
+                                            <img src="{% static 'tipiko/img93.png' %}" class="d-block w-100" alt="Mango Jam">
                                         </div>
                                         <div class="col-md-6">
                                             <h3>Mango Jam</h3>
@@ -560,19 +561,19 @@
 
     <section id="green" class="py-5 bg-light" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/green.png" alt="TIPIKO Green Initiative" class="img-fluid">
+            <img src="{% static 'tipiko/green.png' %}" alt="TIPIKO Green Initiative" class="img-fluid">
         </div>
     </section>
 
     <section id="goals" class="py-5" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/goals.png" alt="TIPIKO Goals" class="img-fluid">
+            <img src="{% static 'tipiko/goals.png' %}" alt="TIPIKO Goals" class="img-fluid">
         </div>
     </section>
 
     <section id="mission" class="py-5 bg-light" data-aos="fade-up">
         <div class="container">
-            <img src="tipiko/mission.png" alt="TIPIKO Mission" class="img-fluid">
+            <img src="{% static 'tipiko/mission.png' %}" alt="TIPIKO Mission" class="img-fluid">
         </div>
     </section>
 
@@ -662,7 +663,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-logo">
-                    <img src="tipiko/img (1).png" alt="TIPIKO Logo">
+                    <img src="{% static 'tipiko/img (1).png' %}" alt="TIPIKO Logo">
                     <p>Savor the taste of Filipino excellence.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>

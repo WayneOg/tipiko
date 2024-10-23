@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-7+#u&2uy-oisg^fv7py8bob))occ$ahh$odbgn98p_2olp@go)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    '.now.sh',
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -75,10 +80,11 @@ WSGI_APPLICATION = 'tipikoproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://postgres.czmyzcaygleatrvbyaiu:6vlzvgEszLXtdRR1@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
