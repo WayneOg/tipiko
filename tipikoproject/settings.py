@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'tipikoproject.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres.czmyzcaygleatrvbyaiu:6vlzvgEszLXtdRR1@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres',
+        default='postgresql://postgres.wwvqkcairszlzbkopksj:Edd8zoHCQBO7CaoD@aws-0-us-west-1.pooler.supabase.com:6543/postgres',
         conn_max_age=600,
         conn_health_checks=True,
     )
