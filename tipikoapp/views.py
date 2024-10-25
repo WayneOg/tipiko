@@ -14,5 +14,9 @@ def restaurant(request):
 def market(request):
     return render(request, 'market.html')
 
+def regions(request):
+    return render(request, 'regions.html')
+
+
 def shop(request):
     return render(request, 'shop.html')
