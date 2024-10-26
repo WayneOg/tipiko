@@ -223,6 +223,37 @@
             padding-top: 1rem;
             border-top: 1px solid #ddd;
         }
+        @media (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .item {
+        width: 100%; /* Full width on mobile */
+    }
+
+    body {
+        font-size: 14px; /* Slightly smaller font on mobile */
+    }
+
+    h1 {
+        font-size: 2rem; /* Adjust heading size */
+    }
+
+    p {
+        font-size: 0.9rem; /* Adjust paragraph size */
+    }
+
+    button, a {
+        font-size: 14px; /* Slightly smaller touch targets */
+    }
+}
+
+@media (min-width: 601px) {
+    .item {
+        width: 48%; /* Two items per row on larger screens */
+    }
+}
     </style>
 </head>
 <body>
