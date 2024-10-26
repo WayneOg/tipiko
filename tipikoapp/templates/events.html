@@ -4,169 +4,61 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipiko Events and Parties</title>
+    <title>Discover Tipiko Delicacies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
-        :root {
-            --primary-color: #FF6B6B;
-            --secondary-color: #FF6B6B;
-            --accent-color: #FFD93D;
-            --text-color: #333;
-            --light-text: #fff;
-            --background-color: #f9f9f9;
-        }
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
+            background-color: #f8f9fa;
+            color: #333;
         }
-        header {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('/api/placeholder/1200/300') center/cover no-repeat;
-            opacity: 0.3;
-            z-index: 0;
-        }
-        header h1 {
-            position: relative;
-            z-index: 1;
-            font-size: 2.5rem;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        nav {
-            background-color: var(--secondary-color);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 40px 20px;
-        }
-        .intro-section {
-            background-color: var(--secondary-color);
-            color: var(--light-text);
-            text-align: center;
-            padding: 50px 20px;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .intro-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-        .intro-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        .scroll-btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-weight: bold;
-        }
-        .scroll-btn:hover {
-            background-color: #FFE74C;
-            transform: scale(1.05);
-        }
-        .event {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-        }
-        .event-image {
-            flex: 1;
-            min-height: 300px;
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static 'tipiko/eventsbg.jpeg' %}');
             background-size: cover;
             background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
         }
-        .event-content {
-            flex: 1;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .restaurant-card {
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .event h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-size: 1.8rem;
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        .event p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
         }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+        .btn-menu {
+            background-color: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 10px 20px;
             font-weight: bold;
-            align-self: flex-start;
+            transition: all 0.3s;
         }
-        .cta-button:hover {
-            background-color: #FFE74C;
+        .btn-menu:hover {
+            background-color: #ff8787;
             transform: scale(1.05);
         }
-        @media (max-width: 768px) {
-            .event {
-                flex-direction: column;
-            }
-            .event-image {
-                min-height: 200px;
-            }
+        .modal-content {
+            border-radius: 15px;
+        }
+        .modal-header {
+            background-color: #ff6b6b;
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .list-group-item {
+            transition: all 0.2s;
+        }
+        .list-group-item:hover {
+            background-color: #f8f9fa;
         }
 
         footer {
@@ -224,76 +116,49 @@
     </style>
 </head>
 <body>
-    
-    <!-- Offcanvas Navbar -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Explore TIPIKO</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav">
-                
-                <li class="nav-item"><a class="nav-link" href="{% url 'restaurant' %}">Restaurants</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'market' %}">Market</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events & Parties</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blogs</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'regions' %}">Regions</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Get in Touch</a></li>
-            </ul>
-        </div>
-    </div>
-    
+    <header class="hero-section text-center">
+        <h1 class="display-2 mb-4">Celebrate Life's Moments with Tipiko</h1>
+        <p class="lead">From corporate gatherings to wedding celebrations, birthday bashes to holiday extravaganzas, Tipiko is here to make your events truly unforgettable. Explore our diverse range of event services and let us bring your vision to life.</p>
+    </header>
+
     <div class="container">
-        <section class="intro-section" style="background-image: url('{% static 'tipiko/eventsbg.jpeg' %}');">
-            <h2>Celebrate Life's Moments with Tipiko</h2>
-            <p>From corporate gatherings to wedding celebrations, birthday bashes to holiday extravaganzas, Tipiko is here to make your events truly unforgettable. Explore our diverse range of event services and let us bring your vision to life.</p>
-            <a href="#events" class="scroll-btn">Discover Our Events</a>
+        <section class="mb-5">
+            <h2 class="h3 mb-4 text-center">Experience Authentic Local Flavors</h2>
+            <p class="text-center">Immerse yourself in the rich culinary traditions of our region with our hand-picked selection of restaurants 
+            serving authentic tipiko delicacies. Each establishment offers a unique dining experience, 
+            showcasing the best of our local ingredients and time-honored recipes.</p>
+            <p class="text-center">From family-run eateries to innovative kitchens putting a modern spin on classic dishes, 
+            these restaurants represent the heart and soul of our culinary heritage. Explore their menus, 
+            find their locations, and plan your next gastronomic adventure!</p>
         </section>
-        
-        <div id="events">
-            <div class="event">
-                <div class="event-image" style="background-image: url('{% static 'tipiko/corporate.jpg' %}');"></div>
-                <div class="event-content">
-                    <h3>Corporate Events</h3>
-                    <p>Elevate your company gatherings with our tailored corporate event services. From team-building workshops to large-scale conferences, we provide comprehensive planning and catering solutions to meet your business needs.</p>
-                    <a href="#book-corporate" class="cta-button">Book Now</a>
+
+        <h2 class="h3 mb-4 text-center">Featured Restaurants</h2>
+        <div class="row" id="restaurantsContainer">
+            <!-- Restaurant cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Modal for menu -->
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuModalLabel">Restaurant Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="event">
-                <div class="event-image" style="background-image: url('{% static 'tipiko/wedding.jpg' %}');"></div>
-                <div class="event-content">
-                    <h3>Wedding Celebrations</h3>
-                    <p>Create unforgettable memories with our bespoke wedding packages. Whether you're planning an intimate ceremony or a grand reception, our expert team will ensure every detail is perfect for your special day.</p>
-                    <a href="#book-wedding" class="cta-button">Plan Your Day</a>
-                </div>
-            </div>
-            <div class="event">
-                <div class="event-image" style="background-image: url('{% static 'tipiko/Birthday.jpg' %}');"></div>
-                <div class="event-content">
-                    <h3>Birthday Parties</h3>
-                    <p>Celebrate another year with our fun and festive birthday options. From kids' themed parties to sophisticated adult gatherings, we offer customized solutions to make your birthday truly special.</p>
-                    <a href="#book-birthday" class="cta-button">Celebrate Now</a>
-                </div>
-            </div>
-            <div class="event">
-                <div class="event-image" style="background-image: url('{% static 'tipiko/holiday.jpg' %}');"></div>
-                <div class="event-content">
-                    <h3>Holiday Celebrations</h3>
-                    <p>Ring in the holidays with style using our seasonal event services. From Christmas parties to New Year's Eve galas, we offer themed decorations, festive menus, and entertainment options to create magical holiday experiences.</p>
-                    <a href="#book-holiday" class="cta-button">Start Planning</a>
+                <div class="modal-body" id="menuModalBody">
+                    <!-- Menu items will be dynamically inserted here -->
                 </div>
             </div>
         </div>
     </div>
-    <br><br>
+    <br><br><br><br>
      <!-- Footer -->
      <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-logo">
-                    <img src="{% static 'tipiko/img1.png' %}" alt="TIPIKO Logo">
+                    <img src="{% static 'tipiko/img1.png'%}" alt="TIPIKO Logo">
                     <p>Savor the taste of Filipino excellence.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -337,23 +202,54 @@
         </div>
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctaButtons = document.querySelectorAll('.cta-button');
-            ctaButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your interest! Our booking system is coming soon. Please contact us for more information.');
-                });
-            });
+        const events = [
+            {
+                name: "Celebrate Life's Moments with Tipiko",
+                about: "Create unforgettable memories with our signature celebration packages. Perfect for life's special milestones, our experienced team ensures every detail is crafted to perfection.",
+                image: "{% static 'tipiko/eventsbg.jpeg' %}"
+            },
+            {
+                name: "Corporate Events",
+                about: "Elevate your business gatherings with our professional corporate event services. From conferences to team building, we provide the perfect setting for productive and memorable corporate functions.",
+                image: "{% static 'tipiko/corporate.jpg' %}"
+            },
+            {
+                name: "Wedding Celebrations",
+                about: "Your dream wedding awaits at Tipiko. Our dedicated wedding specialists work with you to create the perfect celebration, from intimate ceremonies to grand receptions.",
+                image: "{% static 'tipiko/wedding.jpg' %}"
+            },
+            {
+                name: "Birthday Parties",
+                about: "Make your birthday extra special with our customized party packages. Whether it's an intimate gathering or a grand celebration, we'll make sure it's a day to remember.",
+                image: "{% static 'tipiko/Birthday.jpg' %}"
+            },
+            {
+                name: "Holiday Celebrations",
+                about: "Embrace the festive spirit with our holiday event packages. From Christmas parties to New Year celebrations, we create magical moments that bring people together.",
+                image: "{% static 'tipiko/holiday.jpg' %}"
+            }
+        ];
 
-            const scrollBtn = document.querySelector('.scroll-btn');
-            scrollBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const eventsSection = document.getElementById('events');
-                eventsSection.scrollIntoView({ behavior: 'smooth' });
-            });
+        function createEventCard(event) {
+            return `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 event-card">
+                        <img src="${event.image}" class="card-img-top" alt="${event.name}">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-center">${event.name}</h5>
+                            <p class="card-text text-center">${event.about}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventContainer = document.getElementById('eventContainer');
+            const cardsHTML = events.map(event => createEventCard(event)).join('');
+            eventContainer.innerHTML = cardsHTML;
         });
     </script>
 </body>
