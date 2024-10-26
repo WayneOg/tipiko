@@ -20,6 +20,34 @@
             padding: 100px 0;
             margin-bottom: 50px;
         }
+        .event-card {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .card-text {
+            color: #666;
+            line-height: 1.6;
+        }
         .restaurant-card {
             transition: all 0.3s;
             border: none;
@@ -131,7 +159,7 @@
         </section>
 
         <h2 class="h3 mb-4 text-center">Events</h2>
-        <div class="row" id="eventscontainer">
+        <div class="row" id="eventContainer">
             <!-- Restaurant cards will be dynamically inserted here -->
         </div>
     </div>
