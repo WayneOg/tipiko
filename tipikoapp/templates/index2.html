@@ -372,225 +372,255 @@
         </div>
     </section>
 
-        <!-- Virtual Taste Test -->
-        <section id="virtual-taste-test" class="py-5 bg-light">
-            <div class="container">
-                <h2 class="section-title text-center mb-5" data-aos="fade-up">Virtual Taste Test</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 text-center">
-                        <p>Experience the flavors of TIPIKO from home!</p>
-                        <button class="btn btn-custom btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#tasteTestModal">Start Virtual Tasting</button>
+       <!-- Virtual Taste Test Modal -->
+<div class="modal fade" id="tasteTestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">TIPIKO Virtual Taste Test</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="taste-test-carousel" class="carousel slide" data-bs-ride="false">
+                    <div class="carousel-inner">
+                        <!-- Mango Jam -->
+                        <div class="carousel-item active" data-product="mango">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{% static 'tipiko/img88.png' %}" class="d-block w-100" alt="Mango Jam">
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>Mango Jam</h3>
+                                    <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
+                                    
+                                    <div class="flavor-profile mb-4">
+                                        <h4>Flavor Profile</h4>
+                                        <div class="flavor-meter">
+                                            <label>Sweetness</label>
+                                            <div class="flavor-bar" style="width: 80%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Tanginess</label>
+                                            <div class="flavor-bar" style="width: 60%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Fruitiness</label>
+                                            <div class="flavor-bar" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pairing-suggestions mb-4">
+                                        <h4>Pairing Suggestions</h4>
+                                        <ul>
+                                            <li>Spread on warm toast</li>
+                                            <li>Mix with yogurt</li>
+                                            <li>Use as a glaze for grilled chicken</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tasting-notes">
+                                        <h4>Your Tasting Notes</h4>
+                                        <textarea class="form-control" id="tasting-notes-mango" rows="3" placeholder="Write your tasting notes here..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coconut Jam -->
+                        <div class="carousel-item" data-product="coconut">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{% static 'tipiko/img97.png' %}" class="d-block w-100" alt="Coconut Jam">
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>Coconut Jam</h3>
+                                    <p>Creamy, rich coconut spread made from fresh coconut milk.</p>
+                                    
+                                    <div class="flavor-profile mb-4">
+                                        <h4>Flavor Profile</h4>
+                                        <div class="flavor-meter">
+                                            <label>Sweetness</label>
+                                            <div class="flavor-bar" style="width: 70%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Creaminess</label>
+                                            <div class="flavor-bar" style="width: 90%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Richness</label>
+                                            <div class="flavor-bar" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pairing-suggestions mb-4">
+                                        <h4>Pairing Suggestions</h4>
+                                        <ul>
+                                            <li>Perfect on pancakes</li>
+                                            <li>Blend into smoothies</li>
+                                            <li>Use as cake filling</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tasting-notes">
+                                        <h4>Your Tasting Notes</h4>
+                                        <textarea class="form-control" id="tasting-notes-coconut" rows="3" placeholder="Write your tasting notes here..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pineapple Jam -->
+                        <div class="carousel-item" data-product="pineapple">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{% static 'tipiko/img93.png' %}" class="d-block w-100" alt="Pineapple Jam">
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>Pineapple Jam</h3>
+                                    <p>Tropical sweetness with a bright, natural tang.</p>
+                                    
+                                    <div class="flavor-profile mb-4">
+                                        <h4>Flavor Profile</h4>
+                                        <div class="flavor-meter">
+                                            <label>Sweetness</label>
+                                            <div class="flavor-bar" style="width: 70%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Tanginess</label>
+                                            <div class="flavor-bar" style="width: 80%"></div>
+                                        </div>
+                                        <div class="flavor-meter">
+                                            <label>Fruitiness</label>
+                                            <div class="flavor-bar" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pairing-suggestions mb-4">
+                                        <h4>Pairing Suggestions</h4>
+                                        <ul>
+                                            <li>Great with cheese</li>
+                                            <li>Top your ice cream</li>
+                                            <li>Glaze for ham</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tasting-notes">
+                                        <h4>Your Tasting Notes</h4>
+                                        <textarea class="form-control" id="tasting-notes-pineapple" rows="3" placeholder="Write your tasting notes here..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <button class="custom-carousel-control custom-carousel-control-prev" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="prev">
+                        &#10094;
+                    </button>
+                    <button class="custom-carousel-control custom-carousel-control-next" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="next">
+                        &#10095;
+                    </button>
+
+                    <!-- Indicators -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="2"></button>
                     </div>
                 </div>
             </div>
-        </section>
-    
-         <!-- Virtual Taste Test Modal -->
-    <div class="modal fade" id="tasteTestModal" tabindex="-1" aria-labelledby="tasteTestModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tasteTestModalLabel">TIPIKO Virtual Taste Test</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="taste-test-carousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <!-- Mango Jam -->
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <img src="{% static 'tipiko/img88.png' %}" class="d-block w-100" alt="Mango Jam">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3>Mango Jam</h3>
-                                        <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
-                                        <div class="flavor-profile mb-3">
-                                            <h4>Flavor Profile</h4>
-                                            <div id="flavor-wheel-mango" class="flavor-wheel"></div>
-                                        </div>
-                                        <div class="pairing-suggestions mb-3">
-                                            <h4>Pairing Suggestions</h4>
-                                            <ul>
-                                                <li>Spread on warm toast</li>
-                                                <li>Mix with yogurt</li>
-                                                <li>Use as a glaze for grilled chicken</li>
-                                            </ul>
-                                        </div>
-                                        <div class="tasting-notes mb-3">
-                                            <h4>Your Tasting Notes</h4>
-                                            <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Coconut Jam -->
-                            <div class="carousel-item">
-                                <!-- ... (similar structure as Mango Jam) ... -->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img src="{% static 'tipiko/img97.png' %}" class="d-block w-100" alt="Mango Jam">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h3>Mango Jam</h3>
-                                            <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
-                                            <div class="flavor-profile mb-3">
-                                                <h4>Flavor Profile</h4>
-                                                <div id="flavor-wheel-mango" class="flavor-wheel"></div>
-                                            </div>
-                                            <div class="pairing-suggestions mb-3">
-                                                <h4>Pairing Suggestions</h4>
-                                                <ul>
-                                                    <li>Spread on warm toast</li>
-                                                    <li>Mix with yogurt</li>
-                                                    <li>Use as a glaze for grilled chicken</li>
-                                                </ul>
-                                            </div>
-                                            <div class="tasting-notes mb-3">
-                                                <h4>Your Tasting Notes</h4>
-                                                <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Pineapple Jam -->
-                            <div class="carousel-item">
-                                <!-- ... (similar structure as Mango Jam) ... -->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img src="{% static 'tipiko/img93.png' %}" class="d-block w-100" alt="Mango Jam">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h3>Mango Jam</h3>
-                                            <p>Experience the sweet, tangy flavor of ripe Philippine mangoes.</p>
-                                            <div class="flavor-profile mb-3">
-                                                <h4>Flavor Profile</h4>
-                                                <div id="flavor-wheel-mango" class="flavor-wheel"></div>
-                                            </div>
-                                            <div class="pairing-suggestions mb-3">
-                                                <h4>Pairing Suggestions</h4>
-                                                <ul>
-                                                    <li>Spread on warm toast</li>
-                                                    <li>Mix with yogurt</li>
-                                                    <li>Use as a glaze for grilled chicken</li>
-                                                </ul>
-                                            </div>
-                                            <div class="tasting-notes mb-3">
-                                                <h4>Your Tasting Notes</h4>
-                                                <textarea class="form-control" id="tasting-notes-mango" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Custom Navigation Buttons -->
-                        <button class="custom-carousel-control custom-carousel-control-prev" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="prev">
-                            &#10094; <!-- Left arrow -->
-                        </button>
-                        <button class="custom-carousel-control custom-carousel-control-next" type="button" data-bs-target="#taste-test-carousel" data-bs-slide="next">
-                            &#10095; <!-- Right arrow -->
-                        </button>
-                        <!-- Carousel Indicators -->
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Mango Jam"></button>
-                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="1" aria-label="Coconut Jam"></button>
-                            <button type="button" data-bs-target="#taste-test-carousel" data-bs-slide-to="2" aria-label="Pineapple Jam"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-custom" id="save-tasting-notes">Save Tasting Notes</button>
-                    <button type="button" class="btn btn-custom">Order Sample Pack</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-custom" id="save-tasting-notes">Save Notes</button>
+                <button type="button" class="btn btn-custom">Order Sample Pack</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const flavorProfiles = {
-                'Mango Jam': { sweetness: 8, tanginess: 6, fruitiness: 9 },
-                'Coconut Jam': { sweetness: 7, creaminess: 9, richness: 8 },
-                'Pineapple Jam': { sweetness: 7, tanginess: 8, fruitiness: 9 }
-            };
-    
-            const tasteTestModal = document.getElementById('tasteTestModal');
-            tasteTestModal.addEventListener('show.bs.modal', function(event) {
-                updateFlavorProfile('Mango Jam');
-            });
-    
-            const carousel = document.getElementById('taste-test-carousel');
-            carousel.addEventListener('slid.bs.carousel', function(event) {
-                const activeItem = event.relatedTarget;
-                const productName = activeItem.querySelector('h3').textContent;
-                updateFlavorProfile(productName);
-            });
-    
-            function updateFlavorProfile(productName) {
-                const profile = flavorProfiles[productName];
-                createFlavorWheel(profile);
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Product data
+    const products = {
+        mango: {
+            flavors: {
+                sweetness: 80,
+                tanginess: 60,
+                fruitiness: 90
             }
-    
-            function createFlavorWheel(profile) {
-                const width = 300;
-                const height = 300;
-                const radius = Math.min(width, height) / 2;
-    
-                d3.select("#flavor-wheel").selectAll("*").remove();
-    
-                const svg = d3.select("#flavor-wheel")
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .append("g")
-                    .attr("transform", `translate(${width / 2},${height / 2})`);
-    
-                const color = d3.scaleOrdinal(d3.schemeCategory10);
-    
-                const pie = d3.pie()
-                    .value(d => d[1])
-                    .sort(null);
-    
-                const data = Object.entries(profile);
-    
-                const arc = d3.arc()
-                    .innerRadius(0)
-                    .outerRadius(radius);
-    
-                const arcs = svg.selectAll("arc")
-                    .data(pie(data))
-                    .enter()
-                    .append("g");
-    
-                arcs.append("path")
-                    .attr("d", arc)
-                    .attr("fill", (d, i) => color(i));
-    
-                arcs.append("text")
-                    .attr("transform", d => `translate(${arc.centroid(d)})`)
-                    .attr("text-anchor", "middle")
-                    .text(d => `${d.data[0]}: ${d.data[1]}`);
+        },
+        coconut: {
+            flavors: {
+                sweetness: 70,
+                creaminess: 90,
+                richness: 80
             }
-    
-            const saveButton = document.getElementById('save-tasting-notes');
-            saveButton.addEventListener('click', function() {
-                const activeItem = document.querySelector('.carousel-item.active');
-                const productName = activeItem.querySelector('h3').textContent;
-                const tastingNotes = activeItem.querySelector('#tasting-notes').value;
-                
-                // Here you would typically send this data to a server
-                console.log(`Saved tasting notes for ${productName}: ${tastingNotes}`);
-                
-                // For demonstration, we'll just show an alert
-                alert('Tasting notes saved!');
-            });
+        },
+        pineapple: {
+            flavors: {
+                sweetness: 70,
+                tanginess: 80,
+                fruitiness: 90
+            }
+        }
+    };
+
+    // Initialize tooltips and popovers
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    // Save tasting notes
+    document.getElementById('save-tasting-notes').addEventListener('click', function() {
+        const activeItem = document.querySelector('.carousel-item.active');
+        const productName = activeItem.querySelector('h3').textContent;
+        const notesId = `tasting-notes-${activeItem.dataset.product}`;
+        const notes = document.getElementById(notesId).value;
+        
+        // Here you would typically send this data to your backend
+        console.log('Saving notes for:', productName, notes);
+        
+        // Show success message
+        alert('Tasting notes saved successfully!');
+    });
+
+    // Handle carousel slide events
+    const carousel = document.getElementById('taste-test-carousel');
+    carousel.addEventListener('slide.bs.carousel', function(event) {
+        const nextSlide = event.relatedTarget;
+        const productType = nextSlide.dataset.product;
+        
+        // Update flavor bars animation
+        const flavorBars = nextSlide.querySelectorAll('.flavor-bar');
+        flavorBars.forEach(bar => {
+            // Reset the bar width first for animation
+            bar.style.width = '0%';
+            
+            // Trigger reflow
+            void bar.offsetWidth;
+            
+            // Set the new width with animation
+            setTimeout(() => {
+                const flavorType = bar.parentElement.querySelector('label').textContent.toLowerCase();
+                const value = products[productType].flavors[flavorType];
+                bar.style.width = `${value}%`;
+            }, 50);
         });
-        </script>
+    });
+
+    // Initialize the modal
+    const tasteTestModal = document.getElementById('tasteTestModal');
+    tasteTestModal.addEventListener('show.bs.modal', function(event) {
+        // Reset carousel to first slide when modal opens
+        const carousel = document.querySelector('#taste-test-carousel');
+        const carouselInstance = bootstrap.Carousel.getInstance(carousel);
+        if (carouselInstance) {
+            carouselInstance.to(0);
+        }
+    });
+});
+</script>
+
 
     <section id="green" class="py-5 bg-light" data-aos="fade-up">
         <div class="container">
