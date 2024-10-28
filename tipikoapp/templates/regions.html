@@ -127,6 +127,19 @@
         .card-text {
             color: #666;
         }
+        .btn-custom {
+            background-color: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #FF5252;
+            color: white;
+            transform: translateY(-2px);
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -171,19 +184,7 @@
         .card-body {
             padding: 1.5rem;
         }
-        .btn-custom {
-            background-color: #FF6B6B;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-custom:hover {
-            background-color: #FF5252;
-            color: white;
-            transform: translateY(-2px);
-        }
+       
         footer {
             background-color: #f8f9fa;
             color: #333;
@@ -390,7 +391,7 @@
                     <p class="lead">Embark on a global culinary journey discovering traditional dishes from every corner of the world</p>
                 </div>
             </div>
-            <button class="btn btn-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+            <button class="btn btn-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="color: white; background-color: #2C3E50;">
                 Menu
             </button>
         </div>
