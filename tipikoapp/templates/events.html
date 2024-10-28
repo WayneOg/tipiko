@@ -32,128 +32,7 @@
         .event-card:hover {
             transform: translateY(-5px);
         }
-       
-        /* Hamburger button styles */
-        .nav-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background: white;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-toggle span::before,
-        .nav-toggle span::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        .nav-toggle span::before {
-            top: -8px;
-        }
-
-        .nav-toggle span::after {
-            bottom: -8px;
-        }
-
-        /* Animate hamburger when menu is open */
-        .nav-toggle.active span {
-            background: transparent;
-        }
-
-        .nav-toggle.active span::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-
-        .nav-toggle.active span::after {
-            bottom: 0;
-            transform: rotate(-45deg);
-        }
-
-        /* Off-canvas menu styles */
-        .off-canvas {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100%;
-            background: #222;
-            padding: 6rem 2rem 2rem;
-            transition: transform 0.3s ease;
-            z-index: 99;
-            overflow-y: auto;
-        }
-
-        /* Show menu when active */
-        .off-canvas.active {
-            transform: translateX(300px);
-        }
-
-        /* Navigation links */
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin-bottom: 1rem;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: #66c2ff;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 98;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Main content */
-        .main-content {
-            padding: 5rem 2rem 2rem;
-        }
-
-
+        
         .card-img-top {
             height: 200px;
             object-fit: cover;
@@ -416,60 +295,25 @@
         <p class="lead">From corporate gatherings to wedding celebrations, birthday bashes to holiday extravaganzas, Tipiko is here to make your events truly unforgettable. Explore our diverse range of event services and let us bring your vision to life.</p>
     </header>
 
-    <!-- Off-canvas navigation -->
-    <nav class="off-canvas">
-        <ul class="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Overlay -->
-    <div class="overlay"></div>
-
-    <!-- Main content -->
-    <main class="main-content">
-        <h1>Welcome to the Site</h1>
-        <p>Click the menu button to see the off-canvas navigation.</p>
-    </main>
-
-    <script>
-        // Get DOM elements
-        const navToggle = document.querySelector('.nav-toggle');
-        const offCanvas = document.querySelector('.off-canvas');
-        const overlay = document.querySelector('.overlay');
-
-        // Toggle menu function
-        function toggleMenu() {
-            navToggle.classList.toggle('active');
-            offCanvas.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            // Toggle aria-expanded
-            const isExpanded = navToggle.classList.contains('active');
-            navToggle.setAttribute('aria-expanded', isExpanded);
-        }
-
-        // Event listeners
-        navToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-
-        // Close menu on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && offCanvas.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        // Close menu when clicking a link (optional)
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-    </script>
+    <!-- Offcanvas Navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Explore TIPIKO</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item"><a class="nav-link" href="{% url 'restaurant' %}">Restaurants</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'market' %}">Market</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events & Parties</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blogs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'regions' %}">Regions</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Get in Touch</a></li>
+            </ul>
+        </div>
+    </div>
 
     <div class="container">
         <section class="mb-5 intro-section">
