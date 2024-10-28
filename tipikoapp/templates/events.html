@@ -141,36 +141,147 @@
             padding-top: 1rem;
             border-top: 1px solid #ddd;
         }
-        @media (max-width: 600px) {
-    .container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-    }
-
-    .item {
-        width: 100%; /* Full width on mobile */
-    }
-
-    body {
-        font-size: 14px; /* Slightly smaller font on mobile */
-    }
-
-    h1 {
-        font-size: 2rem; /* Adjust heading size */
-    }
-
-    p {
-        font-size: 0.9rem; /* Adjust paragraph size */
-    }
-
-    button, a {
-        font-size: 14px; /* Slightly smaller touch targets */
-    }
+     /* Small phones (320px and below) */
+@media screen and (max-width: 320px) {
+  :root {
+    --container-padding: 0.5rem;
+    --font-size-base: 14px;
+    --spacing-unit: 0.75rem;
+  }
+  
+  .card {
+    padding: 0.75rem;
+  }
 }
 
-@media (min-width: 601px) {
-    .item {
-        width: 48%; /* Two items per row on larger screens */
-    }
+/* Mid-size phones (468px and up) */
+@media screen and (min-width: 468px) {
+  :root {
+    --container-padding: 1.5rem;
+    --font-size-base: 15px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Optimize cards for 2-column layout */
+  .card {
+    padding: 1rem;
+  }
+
+  /* Adjust headings for mid-size screens */
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Optimize form elements */
+  input, 
+  select, 
+  textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.75rem;
+  }
+
+  /* Adjust button sizes */
+  .button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* Optional: Show mini-menu instead of hamburger */
+  .nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .nav-menu a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet styles (768px and up) */
+@media screen and (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+    --font-size-base: 18px;
+  }
+
+  .nav-menu {
+    display: flex;
+    width: auto;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop styles (1024px and up) */
+@media screen and (min-width: 1024px) {
+  :root {
+    --container-padding: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Large desktop styles (1440px and up) */
+@media screen and (min-width: 1440px) {
+  :root {
+    --container-padding: 4rem;
+  }
+
+  .container {
+    max-width: 1400px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav-menu,
+  .nav-toggle,
+  .footer {
+    display: none;
+  }
+
+  body {
+    font-size: 12pt;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
 }
     </style>
 </head>
