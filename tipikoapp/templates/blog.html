@@ -20,6 +20,16 @@
             background-color: #f8f9fa;
         }
 
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 1rem;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         .navbar {
             background: linear-gradient(90deg, #1a1a1a, #2c2c2c) !important;
             padding: 1rem 0;
@@ -346,6 +356,7 @@
 </head>
 <body>
     <header>
+        <h1>Tipiko Blogs</h1>
         <button class="btn btn-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" style="color: #ff8787; padding-left: 45%;">
             Menu
         </button>
