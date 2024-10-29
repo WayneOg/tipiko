@@ -284,11 +284,57 @@
             transform: translateY(-3px);
         }
 
+        footer {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 3rem 0;
+            font-family: Arial, sans-serif;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex: 1;
+            margin: 0 1rem;
+            min-width: 200px;
+        }
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .footer-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .social-icons {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-icons a {
+            color: #333;
+            margin-right: 1rem;
+        }
         .footer-bottom {
-            margin-top: 3rem;
+            margin-top: 2rem;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
         }
 
         /* Responsive Design */
@@ -479,11 +525,12 @@
                 <div class="footer-section footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Recipes</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'restaurant' %}">Restaurants</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'market' %}">Market</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events & Parties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'regions' %}">Regions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Get in Touch</a></li>
                     </ul>
                 </div>
                 <div class="footer-section footer-links">
