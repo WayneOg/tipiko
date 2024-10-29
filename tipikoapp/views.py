@@ -17,6 +17,9 @@ def market(request):
 def regions(request):
     return render(request, 'regions.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 
 def shop(request):
     return render(request, 'shop.html')
