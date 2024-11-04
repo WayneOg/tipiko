@@ -21,7 +21,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 def invest(request):
-    return render(request, 'invest.html')
+    return render(request, 'investors.html')
 
 def shop(request):
     return render(request, 'shop.html')
