@@ -20,6 +20,8 @@ def regions(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def invest(request):
+    return render(request, 'invest.html')
 
 def shop(request):
     return render(request, 'shop.html')
